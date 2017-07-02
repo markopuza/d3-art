@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  background: #eee;
+}
+
+ellipse {
+  fill: #222;
+}
+
+path {
+  fill: none;
+  stroke: #222;
+  stroke-linecap: round;
+}
+
+polyline {
+  fill: white;
+  stroke: #222;
+}
+
+.mid {
+  stroke-width: 4px;
+}
+
+.tail {
+  stroke-width: 2px;
+}
+
+</style>
+<body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = window.innerWidth,
+    height = window.innerHeight,
+    rad = Math.min(width, height) / 2 - 30
+
+var n = 12,
+    m = 12,
+    degrees = 180 / Math.PI;
+
+var fishes = d3.range(n).map(function(i) {
+  var x = width / 2 + rad * Math.cos(2 * Math.PI * i / 12),
+      y = height / 2 + rad * Math.sin(2 * Math.PI * i / 12);
+  return {
+    angle: 0
+  };
+});
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var g = svg.selectAll("g")
+    .data(fishes)
+  .enter().append("g");
+
+var banana = g.append("image")
+    .attr("width", 100)
+    .attr("height", 100)
+    .attr("xlink:href", "http://www.gayalliance.org/wp-content/uploads/2016/02/banana-png-image.jpg");
+
+</script>
